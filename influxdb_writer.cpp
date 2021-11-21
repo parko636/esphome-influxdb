@@ -16,7 +16,7 @@ namespace esphome
         void InfluxDBWriter::setup()
         {
             ESP_LOGCONFIG(TAG, "Setting up InfluxDB Writer...");
-            std::vector<Nameable *> objs;
+            std::vector<EntityBase *> objs;
             for (auto fun : setup_callbacks)
                 objs.push_back(fun());
 
@@ -57,21 +57,21 @@ namespace esphome
 #ifdef USE_BINARY_SENSOR
                 for (auto *obj : App.get_binary_sensors())
                 {
-                    if (!obj->is_internal() && std::none_of(objs.begin(), objs.end(), [&obj](Nameable *o) { return o == obj; }))
+                    if (!obj->is_internal() && std::none_of(objs.begin(), objs.end(), [&obj](EntityBase *o) { return o == obj; }))
                         obj->add_on_state_callback([this, obj](bool state) { this->on_sensor_update(obj, obj->get_object_id(), tags, state); });
                 }
 #endif
 #ifdef USE_SENSOR
                 for (auto *obj : App.get_sensors())
                 {
-                    if (!obj->is_internal() && std::none_of(objs.begin(), objs.end(), [&obj](Nameable *o) { return o == obj; }))
+                    if (!obj->is_internal() && std::none_of(objs.begin(), objs.end(), [&obj](EntityBase *o) { return o == obj; }))
                         obj->add_on_state_callback([this, obj](float state) { this->on_sensor_update(obj, obj->get_object_id(), tags, state); });
                 }
 #endif
 #ifdef USE_TEXT_SENSOR
                 for (auto *obj : App.get_text_sensors())
                 {
-                    if (!obj->is_internal() && std::none_of(objs.begin(), objs.end(), [&obj](Nameable *o) { return o == obj; }))
+                    if (!obj->is_internal() && std::none_of(objs.begin(), objs.end(), [&obj](EntityBase *o) { return o == obj; }))
                         obj->add_on_state_callback([this, obj](std::string state) { this->on_sensor_update(obj, obj->get_object_id(), tags, state); });
                 }
 #endif
