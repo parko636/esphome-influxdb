@@ -46,7 +46,7 @@ namespace esphome
 
       void set_tags(std::string tags) { this->tags = tags; };
       void set_publish_all(bool all) { publish_all = all; };
-      void add_setup_callback(std::function<Nameable *()> fun) { setup_callbacks.push_back(fun); };
+      void add_setup_callback(std::function<EntityBase *()> fun) { setup_callbacks.push_back(fun); };
 
     protected:
       void write(std::string measurement, std::string tags, const std::string value, bool is_string);
@@ -63,7 +63,7 @@ namespace esphome
       std::string tags;
       bool publish_all;
 
-      std::vector<std::function<Nameable *()>> setup_callbacks;
+      std::vector<std::function<EntityBase *()>> setup_callbacks;
 
       http_request::HttpRequestComponent *request_;
     };
