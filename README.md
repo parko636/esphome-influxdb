@@ -37,9 +37,9 @@ influxdb:
 * **port** (Optional, int): Port number the InfluxDB server is listening on. Defaults to 8089.
 * **max\_packet_size** (Optional, int): Max size of UDP packets. Defaults to 500.
 * **send_timeout** (Optional, time): Time to wait before sending UDP packets which have not been filled to max size. Defaults to 100ms.
-* **publish_all** (Optional, boolean): If true publish updates from all sensors unless explicit ignored in per sensor configuration. If false only publish updates from sensors explicit configured. Defaults to True.
+* **publish_all** (Optional, boolean): If true, publish updates from all sensors unless explicitly ignored in per sensor configuration. If false, only publish updates from sensors explicitly configured. Defaults to True.
 * **tags** (Optional, mapping): Mapping of tag keys and values. Defaults to 'node: <esphome.name>'.
-* **sensors** (Optional, mapping): Per sensor configuration. Keys are sensor IDs. All types of sensors are included in this mapping, there is no distinquin bettwi float, binary and text sensors.
+* **sensors** (Optional, mapping): Per sensor configuration. Keys are sensor IDs. All types of sensors are included in this mapping, there is no distinction between float, binary and text sensors.
 
 #### Sensor configuration variables
 
