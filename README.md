@@ -23,9 +23,8 @@ Add `influxdb` section to your ESPHome configuration file.
 ```yaml
 influxdb:
   host: "influxdb-host"
-  database: "$(devicename)_db"
-  username: !secret influxdb_user
-  password: !secret influxdb_pass
+  token: !secret influxdb_token
+  bucket: "$(devicename)"
   
   sensors:
     meter_id:
@@ -40,9 +39,12 @@ influxdb:
 
 * **host** (Required, string): Hostname or IP for the InfluxDB server
 * **port** (Optional, int): Port number the InfluxDB server is listening on. Defaults to <del>8089</del> 8086.
-* **username** (Optional, string): Username for InfluxDB Authentication
-* **password** (Optional, string): Password for InfluxDB Authentication
-* **database** (Optional, default = 'esphome'): Auto create Database if does not exist.
+* **token** (Required, string): Token for InfluxDB Authentication
+* **bucket** (Required, string): InfluxDB Bucket to write to.
+* * **use_ssl** (Optional, boolean): If true, connect to InfluxDB server using SSL
+* **precision** (Optional, string): Timestamp precision. Defaults to 'ns'
+* **org** (Optional, string): InfluxDB org to write to. Ignored by InfluxDB Cloud
+* **orgId** (Optional, string): InfluxDB orgId to write to. Ignored by InfluxDB Cloud
 * <del>**max\_packet_size** (Optional, int): Max size of UDP packets. Defaults to 500.</del>
 * <del>**send_timeout** (Optional, time): Time to wait before sending UDP packets which have not been filled to max size. Defaults to 100ms.</del>
 * **publish_all** (Optional, boolean): If true, publish updates from all sensors unless explicitly ignored in per sensor configuration. If false, only publish updates from sensors explicitly configured. Defaults to True.
